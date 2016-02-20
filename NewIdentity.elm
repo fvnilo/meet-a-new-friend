@@ -65,7 +65,7 @@ fetchNewIdentity =
     |> Effects.task
 
 
-decodeIdentities : Json.Decoder Model
+decodeIdentities : Json.Decoder (List Model)
 decodeIdentities =
   Json.object1 identity
     ("results" := Json.list modelDecoder)
