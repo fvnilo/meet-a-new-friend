@@ -1,0 +1,64 @@
+body
+{
+    font-family: 'Oxygen', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+
+    color: #fff;
+    background-color: #4f92ba;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.identity-card
+{
+    display: flex;
+    flex-direction: row;
+
+    width: 420px;
+    height: 250px;
+    margin-bottom: 10px;
+    padding: 0 35px;
+
+    color: #000;
+    border: 0 solid #000;
+    -webkit-border-radius: 15px 15px 15px 15px;
+       -moz-border-radius: 15px 15px 15px 15px;
+            border-radius: 15px 15px 15px 15px;
+    background-color: #fff;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button
+{
+    font-size: 18px;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    color: #fff;
+    border: 0;
+    background-color: #ff8b00;
+}
+
+.button:hover
+{
+    background-color: #9b5400;
+}
+
+.button:active
+{
+    background-color: #c56b00;
+}
+
+.info--name
+{
+    font-size: 32px;
+
+    margin-bottom: 15px;
+}
