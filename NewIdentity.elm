@@ -34,8 +34,7 @@ type alias Model =
 -- UPDATE
 
 type Action
-  = NoOp
-  | GetNewIdentity
+  = GetNewIdentity
   | NewIdentity (Maybe (List Model) )
 
 
@@ -48,18 +47,16 @@ update action maybeModel =
     NewIdentity identities ->
       getNewModelState identities maybeModel
 
-    NoOp ->
-      ( maybeModel, Effects.none )
-
 
 getNewModelState : Maybe (List Model) -> Maybe Model -> (Maybe Model, Effects Action)
-getNewModelState models defaultModel=
+getNewModelState models defaultModel =
   case models of
     Just model ->
       ( List.head model, Effects.none )
 
     Nothing ->
       ( defaultModel, Effects.none )
+
 
 fetchNewIdentity : Effects Action
 fetchNewIdentity =
@@ -93,7 +90,7 @@ addressDecoder =
     ("state" := Json.string)
 
 
--- view
+-- VIEW
 
 view : Signal.Address Action -> Maybe Model -> Html
 view actionDispatcher maybeModel =
