@@ -45,17 +45,21 @@ update action maybeModel =
     GetNewIdentity ->
       ( maybeModel, fetchNewIdentity )
 
-    NewIdentity maybeNewIdentity ->
-      case maybeNewIdentity of
-        Just model ->
-          ( List.head model, Effects.none )
-
-        Nothing ->
-          ( maybeModel, Effects.none )
+    NewIdentity identities ->
+      getNewModelState identities maybeModel
 
     NoOp ->
       ( maybeModel, Effects.none )
 
+
+getNewModelState : Maybe (List Model) -> Maybe Model -> (Maybe Model, Effects Action)
+getNewModelState models defaultModel=
+  case models of
+    Just model ->
+      ( List.head model, Effects.none )
+
+    Nothing ->
+      ( defaultModel, Effects.none )
 
 fetchNewIdentity : Effects Action
 fetchNewIdentity =
