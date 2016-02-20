@@ -96,9 +96,7 @@ view : Signal.Address Action -> Maybe Model -> Html
 view actionDispatcher maybeModel =
   div
     [ class "app-container"]
-    [ div
-      [ class "identity-card" ]
-      (renderIdentityCard maybeModel)
+    [ (renderIdentityCard maybeModel)
     , button
         [ class "button", onClick actionDispatcher GetNewIdentity ]
         [ text "Get a New Identity" ]
@@ -109,24 +107,23 @@ renderIdentityCard : Maybe Model -> List Html
 renderIdentityCard maybeModel =
   case maybeModel of
     Just model ->
-      [ div
-        [ class "identity-card--info" ]
-        [ h4 [ class "info--name" ] [ text (model.firstName ++ " " ++ model.lastName) ]
-        , p [] [ text model.address.street ]
-        , p [] [ text model.address.city ]
-        , p [] [ text model.address.state ]
-        , p [] [ text model.email ]
+      div
+        [ class "identity-card" ]
+        [ div
+          [ class "identity-card--info" ]
+          [ h4 [ class "info--name" ] [ text (model.firstName ++ " " ++ model.lastName) ]
+          , p [] [ text model.address.street ]
+          , p [] [ text model.address.city ]
+          , p [] [ text model.address.state ]
+          , p [] [ text model.email ]
+          ]
+          , div
+          [ class "identity-card--picture" ]
+          [ img [ src model.photo ] [] ]
         ]
-      , div
-        [ class "identity-card--picture" ]
-        [ img [ src model.photo ] [] ]
-      ]
 
     Nothing ->
-      [ h1
-          [ class "introduction" ]
-          [ text "You are one click away from a new identity" ]
-      ]
+      []
 
 
 -- app
