@@ -59,14 +59,14 @@ update action maybeModel =
 
 fetchNewIdentity : Effects Action
 fetchNewIdentity =
-  Http.get decodeIdentity "https://randomuser.me/api/"
+  Http.get decodeIdentities "https://randomuser.me/api/"
     |> Task.toMaybe
     |> Task.map NewIdentity
     |> Effects.task
 
 
-decodeIdentity : Json.Decoder (List Model)
-decodeIdentity =
+decodeIdentities : Json.Decoder Model
+decodeIdentities =
   Json.object1 identity
     ("results" := Json.list modelDecoder)
 
