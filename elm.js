@@ -11000,7 +11000,6 @@ Elm.NewIdentity.make = function (_elm) {
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm),
-   $StartApp = Elm.StartApp.make(_elm),
    $Task = Elm.Task.make(_elm);
    var _op = {};
    var renderIdentityCard = function (maybeModel) {
@@ -11067,9 +11066,6 @@ Elm.NewIdentity.make = function (_elm) {
             return A2(getNewModelState,_p3._0,maybeModel);
          }
    });
-   var app = $StartApp.start({init: {ctor: "_Tuple2",_0: $Maybe.Nothing,_1: $Effects.none},update: update,view: view,inputs: _U.list([])});
-   var main = app.html;
-   var tasks = Elm.Native.Task.make(_elm).performSignal("tasks",app.tasks);
    return _elm.NewIdentity.values = {_op: _op
                                     ,Address: Address
                                     ,Model: Model
@@ -11082,7 +11078,30 @@ Elm.NewIdentity.make = function (_elm) {
                                     ,modelDecoder: modelDecoder
                                     ,addressDecoder: addressDecoder
                                     ,view: view
-                                    ,renderIdentityCard: renderIdentityCard
-                                    ,app: app
-                                    ,main: main};
+                                    ,renderIdentityCard: renderIdentityCard};
+};
+Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values) return _elm.Main.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $Effects = Elm.Effects.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $NewIdentity = Elm.NewIdentity.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $StartApp = Elm.StartApp.make(_elm),
+   $Task = Elm.Task.make(_elm);
+   var _op = {};
+   var app = $StartApp.start({init: {ctor: "_Tuple2",_0: $Maybe.Nothing,_1: $Effects.none}
+                             ,update: $NewIdentity.update
+                             ,view: $NewIdentity.view
+                             ,inputs: _U.list([])});
+   var main = app.html;
+   var tasks = Elm.Native.Task.make(_elm).performSignal("tasks",app.tasks);
+   return _elm.Main.values = {_op: _op,app: app,main: main};
 };
