@@ -103,7 +103,7 @@ view actionDispatcher maybeModel =
     ]
 
 
-renderIdentityCard : Maybe Model -> List Html
+renderIdentityCard : Maybe Model -> Html
 renderIdentityCard maybeModel =
   case maybeModel of
     Just model ->
@@ -123,7 +123,7 @@ renderIdentityCard maybeModel =
         ]
 
     Nothing ->
-      []
+      text ""
 
 
 -- app
