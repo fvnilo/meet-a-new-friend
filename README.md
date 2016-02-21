@@ -2,7 +2,7 @@
 
 Need a new identity? Get a new one with the click of a button!
 
-(*Note: This is actually something I built to learn elm. Using the [Random User Generator API](https://randomuser.me/)*).
+(*Note: This is actually something I built to learn elm. It is using the [Random User Generator API](https://randomuser.me/).*)
 
 [Click here](http://nylo-andry.github.io/your-new-identity/) to see it live.
 
