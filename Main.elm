@@ -1,7 +1,7 @@
 import Effects exposing (Effects, Never)
 import Task
 
-import NewIdentity exposing (view, update)
+import MeetNewFriend exposing (view, update)
 
 import StartApp
 
