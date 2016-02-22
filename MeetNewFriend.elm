@@ -99,7 +99,7 @@ view actionDispatcher maybeModel =
     [ (renderFriendCard maybeModel)
     , button
         [ class "button", onClick actionDispatcher GetNewFriend ]
-        [ text "Get a New Friend" ]
+        [ text "Meet a New Friend" ]
     ]
 
 
