@@ -11040,7 +11040,7 @@ Elm.MeetNewFriend.make = function (_elm) {
       _U.list([renderFriendCard(maybeModel)
               ,A2($Html.button,
               _U.list([$Html$Attributes.$class("button"),A2($Html$Events.onClick,actionDispatcher,GetNewFriend)]),
-              _U.list([$Html.text("Meet a New Friend")]))]));
+              _U.list([$Html.text("Meet A New Friend")]))]));
    });
    var Model = F5(function (a,b,c,d,e) {    return {firstName: a,lastName: b,address: c,email: d,photo: e};});
    var Address = F3(function (a,b,c) {    return {street: a,city: b,state: c};});
