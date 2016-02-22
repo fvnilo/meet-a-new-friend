@@ -10982,11 +10982,11 @@ Elm.StartApp.make = function (_elm) {
    var Config = F4(function (a,b,c,d) {    return {init: a,update: b,view: c,inputs: d};});
    return _elm.StartApp.values = {_op: _op,start: start,Config: Config,App: App};
 };
-Elm.NewIdentity = Elm.NewIdentity || {};
-Elm.NewIdentity.make = function (_elm) {
+Elm.MeetNewFriend = Elm.MeetNewFriend || {};
+Elm.MeetNewFriend.make = function (_elm) {
    "use strict";
-   _elm.NewIdentity = _elm.NewIdentity || {};
-   if (_elm.NewIdentity.values) return _elm.NewIdentity.values;
+   _elm.MeetNewFriend = _elm.MeetNewFriend || {};
+   if (_elm.MeetNewFriend.values) return _elm.MeetNewFriend.values;
    var _U = Elm.Native.Utils.make(_elm),
    $Basics = Elm.Basics.make(_elm),
    $Debug = Elm.Debug.make(_elm),
@@ -11002,14 +11002,14 @@ Elm.NewIdentity.make = function (_elm) {
    $Signal = Elm.Signal.make(_elm),
    $Task = Elm.Task.make(_elm);
    var _op = {};
-   var renderIdentityCard = function (maybeModel) {
+   var renderFriendCard = function (maybeModel) {
       var _p0 = maybeModel;
       if (_p0.ctor === "Just") {
             var _p1 = _p0._0;
             return A2($Html.div,
-            _U.list([$Html$Attributes.$class("identity-card")]),
+            _U.list([$Html$Attributes.$class("friend-card")]),
             _U.list([A2($Html.div,
-                    _U.list([$Html$Attributes.$class("identity-card--info")]),
+                    _U.list([$Html$Attributes.$class("friend-card--info")]),
                     _U.list([A2($Html.h4,
                             _U.list([$Html$Attributes.$class("info--name")]),
                             _U.list([$Html.text(A2($Basics._op["++"],_p1.firstName,A2($Basics._op["++"]," ",_p1.lastName)))]))
@@ -11018,7 +11018,7 @@ Elm.NewIdentity.make = function (_elm) {
                             ,A2($Html.p,_U.list([]),_U.list([$Html.text(_p1.address.state)]))
                             ,A2($Html.p,_U.list([]),_U.list([$Html.text(_p1.email)]))]))
                     ,A2($Html.div,
-                    _U.list([$Html$Attributes.$class("identity-card--picture")]),
+                    _U.list([$Html$Attributes.$class("friend-card--picture")]),
                     _U.list([A2($Html.img,_U.list([$Html$Attributes.src(_p1.photo)]),_U.list([]))]))]));
          } else {
             return $Html.text("");
@@ -11032,15 +11032,15 @@ Elm.NewIdentity.make = function (_elm) {
             return {ctor: "_Tuple2",_0: defaultModel,_1: $Effects.none};
          }
    });
-   var NewIdentity = function (a) {    return {ctor: "NewIdentity",_0: a};};
-   var GetNewIdentity = {ctor: "GetNewIdentity"};
+   var NewFriend = function (a) {    return {ctor: "NewFriend",_0: a};};
+   var GetNewFriend = {ctor: "GetNewFriend"};
    var view = F2(function (actionDispatcher,maybeModel) {
       return A2($Html.div,
       _U.list([$Html$Attributes.$class("app-container")]),
-      _U.list([renderIdentityCard(maybeModel)
+      _U.list([renderFriendCard(maybeModel)
               ,A2($Html.button,
-              _U.list([$Html$Attributes.$class("button"),A2($Html$Events.onClick,actionDispatcher,GetNewIdentity)]),
-              _U.list([$Html.text("Get a New Identity")]))]));
+              _U.list([$Html$Attributes.$class("button"),A2($Html$Events.onClick,actionDispatcher,GetNewFriend)]),
+              _U.list([$Html.text("Get a New Friend")]))]));
    });
    var Model = F5(function (a,b,c,d,e) {    return {firstName: a,lastName: b,address: c,email: d,photo: e};});
    var Address = F3(function (a,b,c) {    return {street: a,city: b,state: c};});
@@ -11056,29 +11056,29 @@ Elm.NewIdentity.make = function (_elm) {
    A2($Json$Decode.at,_U.list(["user","location"]),addressDecoder),
    A2($Json$Decode.at,_U.list(["user","email"]),$Json$Decode.string),
    A2($Json$Decode.at,_U.list(["user","picture","medium"]),$Json$Decode.string));
-   var decodeIdentities = A2($Json$Decode.object1,$Basics.identity,A2($Json$Decode._op[":="],"results",$Json$Decode.list(modelDecoder)));
-   var fetchNewIdentity = $Effects.task(A2($Task.map,NewIdentity,$Task.toMaybe(A2($Http.get,decodeIdentities,"https://randomuser.me/api/"))));
+   var decodeFriends = A2($Json$Decode.object1,$Basics.identity,A2($Json$Decode._op[":="],"results",$Json$Decode.list(modelDecoder)));
+   var fetchNewFriend = $Effects.task(A2($Task.map,NewFriend,$Task.toMaybe(A2($Http.get,decodeFriends,"https://randomuser.me/api/"))));
    var update = F2(function (action,maybeModel) {
       var _p3 = action;
-      if (_p3.ctor === "GetNewIdentity") {
-            return {ctor: "_Tuple2",_0: maybeModel,_1: fetchNewIdentity};
+      if (_p3.ctor === "GetNewFriend") {
+            return {ctor: "_Tuple2",_0: maybeModel,_1: fetchNewFriend};
          } else {
             return A2(getNewModelState,_p3._0,maybeModel);
          }
    });
-   return _elm.NewIdentity.values = {_op: _op
-                                    ,Address: Address
-                                    ,Model: Model
-                                    ,GetNewIdentity: GetNewIdentity
-                                    ,NewIdentity: NewIdentity
-                                    ,update: update
-                                    ,getNewModelState: getNewModelState
-                                    ,fetchNewIdentity: fetchNewIdentity
-                                    ,decodeIdentities: decodeIdentities
-                                    ,modelDecoder: modelDecoder
-                                    ,addressDecoder: addressDecoder
-                                    ,view: view
-                                    ,renderIdentityCard: renderIdentityCard};
+   return _elm.MeetNewFriend.values = {_op: _op
+                                      ,Address: Address
+                                      ,Model: Model
+                                      ,GetNewFriend: GetNewFriend
+                                      ,NewFriend: NewFriend
+                                      ,update: update
+                                      ,getNewModelState: getNewModelState
+                                      ,fetchNewFriend: fetchNewFriend
+                                      ,decodeFriends: decodeFriends
+                                      ,modelDecoder: modelDecoder
+                                      ,addressDecoder: addressDecoder
+                                      ,view: view
+                                      ,renderFriendCard: renderFriendCard};
 };
 Elm.Main = Elm.Main || {};
 Elm.Main.make = function (_elm) {
@@ -11091,15 +11091,15 @@ Elm.Main.make = function (_elm) {
    $Effects = Elm.Effects.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
-   $NewIdentity = Elm.NewIdentity.make(_elm),
+   $MeetNewFriend = Elm.MeetNewFriend.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm),
    $StartApp = Elm.StartApp.make(_elm),
    $Task = Elm.Task.make(_elm);
    var _op = {};
    var app = $StartApp.start({init: {ctor: "_Tuple2",_0: $Maybe.Nothing,_1: $Effects.none}
-                             ,update: $NewIdentity.update
-                             ,view: $NewIdentity.view
+                             ,update: $MeetNewFriend.update
+                             ,view: $MeetNewFriend.view
                              ,inputs: _U.list([])});
    var main = app.html;
    var tasks = Elm.Native.Task.make(_elm).performSignal("tasks",app.tasks);
