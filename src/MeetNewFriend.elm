@@ -1,4 +1,4 @@
-module NewIdentity where
+module MeetNewFriend where
 
 import Html exposing (..)
 import Html.Attributes exposing (class, src)
@@ -34,18 +34,18 @@ type alias Model =
 -- UPDATE
 
 type Action
-  = GetNewIdentity
-  | NewIdentity (Maybe (List Model) )
+  = GetNewFriend
+  | NewFriend (Maybe (List Model) )
 
 
 update : Action -> Maybe Model -> (Maybe Model, Effects Action)
 update action maybeModel =
   case action of
-    GetNewIdentity ->
-      ( maybeModel, fetchNewIdentity )
+    GetNewFriend ->
+      ( maybeModel, fetchNewFriend )
 
-    NewIdentity identities ->
-      getNewModelState identities maybeModel
+    NewFriend friends ->
+      getNewModelState friends maybeModel
 
 
 getNewModelState : Maybe (List Model) -> Maybe Model -> (Maybe Model, Effects Action)
@@ -58,16 +58,16 @@ getNewModelState models defaultModel =
       ( defaultModel, Effects.none )
 
 
-fetchNewIdentity : Effects Action
-fetchNewIdentity =
-  Http.get decodeIdentities "https://randomuser.me/api/"
+fetchNewFriend : Effects Action
+fetchNewFriend =
+  Http.get decodeFriends "https://randomuser.me/api/"
     |> Task.toMaybe
-    |> Task.map NewIdentity
+    |> Task.map NewFriend
     |> Effects.task
 
 
-decodeIdentities : Json.Decoder (List Model)
-decodeIdentities =
+decodeFriends : Json.Decoder (List Model)
+decodeFriends =
   Json.object1 identity
     ("results" := Json.list modelDecoder)
 
@@ -96,21 +96,21 @@ view : Signal.Address Action -> Maybe Model -> Html
 view actionDispatcher maybeModel =
   div
     [ class "app-container"]
-    [ (renderIdentityCard maybeModel)
+    [ (renderFriendCard maybeModel)
     , button
-        [ class "button", onClick actionDispatcher GetNewIdentity ]
-        [ text "Get a New Identity" ]
+        [ class "button", onClick actionDispatcher GetNewFriend ]
+        [ text "Meet A New Friend" ]
     ]
 
 
-renderIdentityCard : Maybe Model -> Html
-renderIdentityCard maybeModel =
+renderFriendCard : Maybe Model -> Html
+renderFriendCard maybeModel =
   case maybeModel of
     Just model ->
       div
-        [ class "identity-card" ]
+        [ class "friend-card" ]
         [ div
-          [ class "identity-card--info" ]
+          [ class "friend-card--info" ]
           [ h4 [ class "info--name" ] [ text (model.firstName ++ " " ++ model.lastName) ]
           , p [] [ text model.address.street ]
           , p [] [ text model.address.city ]
@@ -118,7 +118,7 @@ renderIdentityCard maybeModel =
           , p [] [ text model.email ]
           ]
           , div
-          [ class "identity-card--picture" ]
+          [ class "friend-card--picture" ]
           [ img [ src model.photo ] [] ]
         ]
 

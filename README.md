@@ -11,5 +11,5 @@ Need a new identity? Get a new one with the click of a button!
 In your terminal (assuming you [installed elm](http://elm-lang.org/install)):
 
     elm package install
-    elm make Main.elm --output elm.js
+    elm make src/Main.elm --output elm.js
     open index.html
